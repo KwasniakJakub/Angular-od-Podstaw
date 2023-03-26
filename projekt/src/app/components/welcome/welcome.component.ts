@@ -7,7 +7,21 @@ import { Component } from '@angular/core';
 })
 export class WelcomeComponent {
 
+  user = {
+    firstName : 'Jack Handsome',
+    isSubscribed: true
+  }
+
+ 
+
   constructor(){ }
+
+  askIfSubscribed(){
+     
+
+    return this.user.isSubscribed ? 
+    'You are subscribed' : 'Want to get updates' + this.user.firstName + '?'
+  }
 
   ngOnInit(): void{
   }
