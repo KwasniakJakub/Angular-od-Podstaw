@@ -1,10 +1,20 @@
+
+
 <p> Welcome <b>{{ user.firstName.toLocaleUpperCase() }}</b> ! </p>
 
 <div [title]="user.firstName" 
      [hidden]="!askAboutName"
      [attr.data-isSubscribed]="user.isSubscribed" 
      role="presentation">
-    <input type="text" [value]="user.firstName" class="test-class">
+
+    <input type="text" [value]="user.firstName" #firstNameRef
+        (keyup)="user.firstName = $any($event.target).value">
+
+    <p>{{ 170 - user.firstName.length }} / 170</p>
+
+    <!-- <button (click)="changeFirstName(firstNameRef)">Change Name</button> -->
 </div>
 
 <p> {{ askIfSubscribed() }} </p>
+
+

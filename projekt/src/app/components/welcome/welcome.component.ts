@@ -6,13 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent {
+tempName = ''
 
   user = {
     firstName : 'Jack Handsome', 
     isSubscribed: false
   }
 
-  askAboutName = false 
+  askAboutName = true 
+
+  changeFirstName(firstNameRef:HTMLInputElement){
+    console.log(firstNameRef)
+    
+    this.user.firstName = firstNameRef.value
+  }
 
   constructor(){ }
 
