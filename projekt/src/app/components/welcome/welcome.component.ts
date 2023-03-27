@@ -8,19 +8,17 @@ import { Component } from '@angular/core';
 export class WelcomeComponent {
 
   user = {
-    firstName : 'Jack Handsome',
-    isSubscribed: true
+    firstName : 'Jack Handsome', 
+    isSubscribed: false
   }
 
- 
+  askAboutName = false 
 
   constructor(){ }
 
   askIfSubscribed(){
-     
-
     return this.user.isSubscribed ? 
-    'You are subscribed' : 'Want to get updates' + this.user.firstName + '?'
+    'You are subscribed' : 'Want to get updates ' + this.user.firstName + ' ?'
   }
 
   ngOnInit(): void{
