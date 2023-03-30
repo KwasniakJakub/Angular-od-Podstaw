@@ -1,25 +1,27 @@
-<pre>
-    {{user | json}}
-</pre>
+<!-- <pre>{{user | json}}</pre> -->
 
+<p [hidden]="!steps.showWelcome"> Witaj <b>{{ user.firstName | titlecase}}</b> ! </p>
 
-<p> Welcome <b>{{ user.firstName | titlecase | slice:5:10}}</b> ! </p>
+<p [hidden]="!steps.askForFirstName">
+    Jak masz na imię
+    <input class="inline-input" type="text" [value]="user.firstName" #firstNameRef
+    (input)="updateName($any($event.target).value)" autofocus maxlength="20">
+    ?
+</p>
 
-<p>{{user.birthDay | date: dateFormat}}</p>
+<p [hidden]="!steps.askToSubscribe">
+    Czy chciałbyś się zapisać do newslettera?
+    <button (click)="agreedToSubscribe()">Tak</button>
+    <button disabled>Nie</button>
 
-<div [title]="user.firstName" 
-     [hidden]="!askAboutName"
-     [attr.data-isSubscribed]="user.isSubscribed" 
-     role="presentation">
+</p>
 
-    <input type="text" [value]="user.firstName" #firstNameRef
-        (keyup)="user.firstName = $any($event.target).value">
+<p [hidden]="!steps.askForEmail">
+    Wpisz swój adres email<input type="text" class="inline-input" placeholder="tutaj" #emailRef>
+    i<button (click)="subscribeUser(emailRef.value)">Kliknij tutaj!</button>
+</p>
 
-    <p>{{ 170 - user.firstName.length }} / 170</p>
-
-    <!-- <button (click)="changeFirstName(firstNameRef)">Change Name</button> -->
+<div [hidden]="!steps.subscribedSuccess">
+    <h1>Wszystko jest juz skonfigurowane</h1>
+    <p>Sprawdź swoją skrzynkę mailową</p>
 </div>
-
-<p> {{ askIfSubscribed() }} </p>
-
-

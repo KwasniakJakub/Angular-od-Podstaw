@@ -1,34 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent {
-tempName = ''
-
+export class WelcomeComponent  implements OnInit{
   user = {
-    firstName : 'Jack Handsome', 
+    firstName : 'Handsome', 
     isSubscribed: false,
-    birthDay: new Date(1970,0,0)
+    email: ''
   }
 
-  dateFormat = 'shortDate'
-  askAboutName = true 
-
-  changeFirstName(firstNameRef:HTMLInputElement){
-    console.log(firstNameRef)
-    
-    this.user.firstName = firstNameRef.value
-  }
+steps = {
+  showWelcome: false,
+  askForFirstName:true,
+  askForEmail:false,
+  askToSubscribe:false,
+  subscribedSuccess:false
+}
 
   constructor(){ }
 
-  askIfSubscribed(){
-    return this.user.isSubscribed ? 
-    'You are subscribed' : 'Want to get updates ' + this.user.firstName + ' ?'
+  updateName(firstName: string){
+    this.user.firstName = firstName
+    if(('Handsome'.startsWith(firstName) === false)){
+      this.steps.showWelcome = true
+    }
+    if(this.steps.showWelcome && firstName.length >= 3){
+      setTimeout(() => {
+        this.steps.askToSubscribe = true
+      }, 1500);
+    }
   }
+
+  agreedToSubscribe(){
+    this.steps.askForEmail = true  
+    this.steps.askToSubscribe = false
+  }
+  subscribeUser(email:string){
+    this.user.email = email
+    this.user.isSubscribed = true
+    this.steps.askForEmail = false 
+    this.steps.subscribedSuccess = true
+  }
+  
+  skipSubscription(){}
 
   ngOnInit(): void{
   }
