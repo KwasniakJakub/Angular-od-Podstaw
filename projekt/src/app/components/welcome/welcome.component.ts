@@ -10,9 +10,11 @@ tempName = ''
 
   user = {
     firstName : 'Jack Handsome', 
-    isSubscribed: false
+    isSubscribed: false,
+    birthDay: new Date(1970,0,0)
   }
 
+  dateFormat = 'shortDate'
   askAboutName = true 
 
   changeFirstName(firstNameRef:HTMLInputElement){

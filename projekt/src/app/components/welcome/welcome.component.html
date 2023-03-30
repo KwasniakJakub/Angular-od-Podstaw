@@ -1,6 +1,11 @@
+<pre>
+    {{user | json}}
+</pre>
 
 
-<p> Welcome <b>{{ user.firstName.toLocaleUpperCase() }}</b> ! </p>
+<p> Welcome <b>{{ user.firstName | titlecase | slice:5:10}}</b> ! </p>
+
+<p>{{user.birthDay | date: dateFormat}}</p>
 
 <div [title]="user.firstName" 
      [hidden]="!askAboutName"
