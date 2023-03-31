@@ -8,3 +8,21 @@
     outline: none;
     border-bottom: 1px solid darkblue;
 }       
+
+.inline-input.valid{
+    border-bottom: 2px dashed green;
+}
+.inline-input.invalid{
+    border-bottom: 2px dashed red;
+}
+.slideIn{
+    height: 0;
+    opacity: 0;
+    transition: all .5s ease-in;
+    transform: translateX(-200px);
+}
+.slideIn.animated{
+    height: auto;
+    opacity: 1;
+    transform: translateX(0px);
+}

@@ -15,7 +15,7 @@ export class WelcomeComponent  implements OnInit{
 steps = {
   showWelcome: false,
   askForFirstName:true,
-  askForEmail:true,
+  askForEmail:false,
   askToSubscribe:false,
   subscribedSuccess:false
 }
