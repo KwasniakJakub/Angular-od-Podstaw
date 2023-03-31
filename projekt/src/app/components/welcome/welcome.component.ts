@@ -15,7 +15,7 @@ export class WelcomeComponent  implements OnInit{
 steps = {
   showWelcome: false,
   askForFirstName:true,
-  askForEmail:false,
+  askForEmail:true,
   askToSubscribe:false,
   subscribedSuccess:false
 }
@@ -30,15 +30,20 @@ steps = {
     if(this.steps.showWelcome && firstName.length >= 3){
       setTimeout(() => {
         this.steps.askToSubscribe = true
-      }, 1500);
+      }, 1500)
     }
   }
 
-  agreedToSubscribe(){
+  updateEmail(email:string){
+    this.user.email = email
+  }
+
+  agreedToSubscribe(): void{
+    this.steps.askForFirstName = false
     this.steps.askForEmail = true  
     this.steps.askToSubscribe = false
   }
-  subscribeUser(email:string){
+  subscribeUser(email: string){
     this.user.email = email
     this.user.isSubscribed = true
     this.steps.askForEmail = false 
