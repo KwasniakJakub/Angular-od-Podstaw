@@ -13,7 +13,7 @@ import { Component} from '@angular/core';
       <input type="text" [value]="user.firstName" 
                          (keyup)="user.firstName = $any($event.target).value">
 
-      <app-welcome [data]="anonym" (userSubscribed)="subscribed($event)"></app-welcome>
+      <app-welcome [data]="anonym" (userSubscribed)="user = $event"></app-welcome>
 
       <app-welcome [data]="user"></app-welcome>
      

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges  } from '@angular/core';
 
 @Component({
   selector: 'app-welcome',
@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
   //   'user:data'
   // ]
 })
-export class WelcomeComponent  implements OnInit{
+export class WelcomeComponent  implements OnInit, OnChanges {
   
   @Input('data')
   user = {
@@ -16,7 +16,12 @@ export class WelcomeComponent  implements OnInit{
     isSubscribed: false,
     email: ''
   }
-  
+ ngOnChanges(changes: SimpleChanges): void{
+  if(changes['user'].currentValue.isSubscribed){
+    this.steps.askForFirstName = false
+    this.steps.subscribedSuccess = true
+  }
+}
 
 @Output()
 userSubscribed = new EventEmitter
@@ -30,7 +35,7 @@ steps = {
 }
 
   constructor(){ }
-
+ 
   updateName(firstName: string){
     this.user.firstName = firstName
     if(('Handsome'.startsWith(firstName) === false)){
