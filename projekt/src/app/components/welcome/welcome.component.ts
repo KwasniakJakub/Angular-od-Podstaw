@@ -10,7 +10,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 })
 export class WelcomeComponent  implements OnInit, OnChanges {
   
-  @Input('data')
+  @Input()
   user = {
     firstName : 'Handsome', 
     isSubscribed: false,
