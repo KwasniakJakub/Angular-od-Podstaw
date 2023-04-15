@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+ 
+  readmore = false;
 
+  constructor(){ }
+
+  ngOnInit():void{
+  }
 }
