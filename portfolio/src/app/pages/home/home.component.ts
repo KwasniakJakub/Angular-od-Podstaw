@@ -9,6 +9,8 @@ export class HomeComponent {
  
   readmore = false;
 
+  value = ""
+
   constructor(){ }
 
   ngOnInit():void{

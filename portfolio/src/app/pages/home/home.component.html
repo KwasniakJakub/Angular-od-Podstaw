@@ -14,11 +14,16 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 A accusantium consectetur recusandae in, corporis et explicabo molestiae dolores,
                 dignissimos incidunt officiis magnam non eligendi dicta voluptates at libero praesentium eveniet.</p>
-            <a href="#" [hidden]="readmore" (click)="readmore = true">Read More</a>
-            
-            <p [hidden]="!readmore">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <a href="#" [hidden]="readmore" (click)="readmore = !readmore">Read More</a>
+
+
+            <p *ngIf="readmore">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 A accusantium consectetur recusandae in, corporis et explicabo molestiae dolores,
                 dignissimos incidunt officiis magnam non eligendi dicta voluptates at libero praesentium eveniet.</p>
+
+            <ng-template [ngIf]=" readmore ">
+            </ng-template>
+
         </div>
         <div class="col">
             <app-progressbar value="25" label="Angular" status="danger" striped></app-progressbar>
