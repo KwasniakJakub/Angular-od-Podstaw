@@ -32,7 +32,57 @@
         </div>
     </div>
 </div>
+<!-- What I do -->
+<div class="container">
+    <h2 class="mt-4 text-center">What I Do</h2>
+    <hr>
+    <div class="row py-4">
+        <div class="col-md-6 col-12 p2">
+            <!-- -->
+            <div class="nav flex-column nav-pills text-lg-right">
+                <a href="javascript:" class="nav-link" (click)="currentTab = 'marketing'">Mobile Applications</a>
+                <a href="javascript:" class="nav-link" (click)="currentTab = 'mobile'">Websites with CMS</a>
+                <a href="javascript:" class="nav-link" (click)="currentTab = 'websites'">Web Applications</a>
+                <a href="javascript:" class="nav-link" (click)="currentTab = 'web'">Marketing and sales langing
+                    pages</a>
+            </div>
+            <!-- -->
+        </div>
+        <div class="col-md-6 col-12 pb-2 order-first order-lg-last">
+            <div class="d-flex flex-column h-100" [ngSwitch]="currentTab">
+                <div class="my-auto" *ngSwitchDefault>
+                    <h3>I Offer a variety of quality serivces</h3>
+                    <p>&laquo; Please select option to learn more</p>
+                </div>
 
+                <div *ngSwitchCase="'marketing'">
+                    <p><strong>Marketing and sales langing pages<br></strong>Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Quia voluptas officiis consectetur officia
+                        voluptatibus expedita, hic optio adipisci pariatur quis eos perspiciatis.
+                        Natus voluptate ab, fugit fuga illum autem quaerat!</p>
+                </div>
+                <div *ngSwitchCase="'mobile'">
+                    <p><strong>Mobile Appliactions<br></strong>Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Quia voluptas officiis consectetur officia
+                        voluptatibus expedita, hic optio adipisci pariatur quis eos perspiciatis.
+                        Natus voluptate ab, fugit fuga illum autem quaerat!</p>
+                </div>
+                <div *ngSwitchCase="'websites'">
+                    <p><strong>Websites with CMS<br></strong>Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Quia voluptas officiis consectetur officia
+                        voluptatibus expedita, hic optio adipisci pariatur quis eos perspiciatis.
+                        Natus voluptate ab, fugit fuga illum autem quaerat!</p>
+                </div>
+                <div *ngSwitchCase="'web'">
+                    <p><strong>Web Appliactions<br></strong>Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Quia voluptas officiis consectetur officia
+                        voluptatibus expedita, hic optio adipisci pariatur quis eos perspiciatis.
+                        Natus voluptate ab, fugit fuga illum autem quaerat!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <app-herobar>
     <blockquote class="blockquote text-white">
         <h4>"Such a quote... much motivational"</h4>

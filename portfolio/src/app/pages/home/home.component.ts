@@ -9,7 +9,9 @@ export class HomeComponent {
  
   readmore = false;
 
-  value = ""
+  value = ''
+
+  currentTab = ''
 
   constructor(){ }
 
