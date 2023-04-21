@@ -101,7 +101,7 @@
                     <button class="btn btn-link">Read more</button>
                 </div>
             </div>
-        </div>
+        </div>  
 
     </div>
     <!-- <div class="text-center pb-5 dispay-3">
@@ -109,9 +109,47 @@
     </div> -->
 </div>
 
-<app-herobar>
+<!-- Testimonials -->
+<div class="container">
+    <h2 class="mt-4 text-center">What My Clients Say</h2>
+    <hr>
+    <div class="row py-4">
+        <div class="col py-2 px-4">
+            <app-testimonial *ngFor="let testimonial of testimonials">
+
+                <ng-container ngProjectAs="author">{{testimonial.author}}</ng-container>
+                <ng-container ngProjectAs="title">{{testimonial.title}}</ng-container>
+
+                <p>
+                   {{testimonial.content}}
+                </p>
+
+                <app-avatar ngProjectAs="avatar" [image]="testimonial.image"></app-avatar>
+
+                <app-rating *ngIf="testimonial.rating"
+                 ngProjectAs="rating" [rating]="testimonial.rating"></app-rating>
+
+            </app-testimonial>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+
+<footer class="bg-dark text-light">
+    <div class="container">
+        <div class="row py-4">
+            <div class="col">
+                <h3>Angular Agency Website</h3>
+                <p>Copyright KompuSoft</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- <app-herobar>
     <blockquote class="blockquote text-white">
         <h4>"Such a quote... much motivational"</h4>
         <footer class="blockquote-footer text-white">Someone famous</footer>
     </blockquote>
-</app-herobar>
+</app-herobar> -->
