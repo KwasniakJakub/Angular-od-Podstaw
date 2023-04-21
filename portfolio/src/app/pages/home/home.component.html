@@ -83,6 +83,32 @@
         </div>
     </div>
 </div>
+
+<!-- My recent projects -->
+
+<div class="container">
+    <h2 class="mt-4 text-center">My Recent projects</h2>
+    <hr>
+    <div class="row py-4">
+        <!-- <ng-template ngFor let-project="$implicit" [ngForOf]="recentProjects" let-first="first">
+        </ng-template> -->
+        <div class="col" *ngFor="let project of recentProjects; let isLast = last; let isFirst = first; index as i "
+            [ngClass]="{firtProject: isLast == true, lastProject: isFirst == true}">
+            <div class="card">
+                <img class="img-fluid" [src]="project.image">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ project.name }}</h5>
+                    <button class="btn btn-link">Read more</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- <div class="text-center pb-5 dispay-3">
+        <a href="javascript:;" class="btn btn-link">&raquo; Show more projects &laquo;</a>
+    </div> -->
+</div>
+
 <app-herobar>
     <blockquote class="blockquote text-white">
         <h4>"Such a quote... much motivational"</h4>
