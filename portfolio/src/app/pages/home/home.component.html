@@ -8,7 +8,10 @@
 
 </app-herobar>
 
+<!-- What Am I -->
+
 <div class="container">
+    <h2 class="mt-4 text-center">What Am I</h2>
     <div class="row py-4">
         <div class="col">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -17,7 +20,7 @@
             <a href="#" [hidden]="readmore" (click)="readmore = !readmore">Read More</a>
 
 
-            <p *ngIf="readmore">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <p *ngIf="readmore" appSlideIn >Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 A accusantium consectetur recusandae in, corporis et explicabo molestiae dolores,
                 dignissimos incidunt officiis magnam non eligendi dicta voluptates at libero praesentium eveniet.</p>
 
@@ -37,7 +40,7 @@
     <h2 class="mt-4 text-center">What I Do</h2>
     <hr>
     <div class="row py-4">
-        <div class="col-md-6 col-12 p2">
+        <div class="col-md-6 col-12 p2" appSlideIn="left" [delay]="2000">
             <!-- -->
             <div class="nav flex-column nav-pills text-lg-right">
                 <a href="javascript:" class="nav-link" (click)="currentTab = 'marketing'">Mobile Applications</a>
@@ -48,7 +51,7 @@
             </div>
             <!-- -->
         </div>
-        <div class="col-md-6 col-12 pb-2 order-first order-lg-last">
+        <div  appSlideIn="right" [delay]="3000" class="col-md-6 col-12 pb-2 order-first order-lg-last">
             <div class="d-flex flex-column h-100" [ngSwitch]="currentTab">
                 <div class="my-auto" *ngSwitchDefault>
                     <h3>I Offer a variety of quality serivces</h3>
