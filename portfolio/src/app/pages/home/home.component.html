@@ -20,7 +20,7 @@
             <a href="#" [hidden]="readmore" (click)="readmore = !readmore">Read More</a>
 
 
-            <p *ngIf="readmore" appSlideIn >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <p *ngIf="readmore" appSlideIn>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 A accusantium consectetur recusandae in, corporis et explicabo molestiae dolores,
                 dignissimos incidunt officiis magnam non eligendi dicta voluptates at libero praesentium eveniet.</p>
 
@@ -51,7 +51,7 @@
             </div>
             <!-- -->
         </div>
-        <div  appSlideIn="right" [delay]="3000" class="col-md-6 col-12 pb-2 order-first order-lg-last">
+        <div appSlideIn="right" [delay]="3000" class="col-md-6 col-12 pb-2 order-first order-lg-last">
             <div class="d-flex flex-column h-100" [ngSwitch]="currentTab">
                 <div class="my-auto" *ngSwitchDefault>
                     <h3>I Offer a variety of quality serivces</h3>
@@ -104,7 +104,7 @@
                     <button class="btn btn-link">Read more</button>
                 </div>
             </div>
-        </div>  
+        </div>
 
     </div>
     <!-- <div class="text-center pb-5 dispay-3">
@@ -115,7 +115,7 @@
 <!-- My Work In Numbers -->
 
 <div class="container">
-    <h2 class="mt-4 text-center" >My Work In Numbers</h2>
+    <h2 class="mt-4 text-center">My Work In Numbers</h2>
     <hr>
     <div class="d-flex flex-column flex-md-row justify-content-around pb-5">
         <app-counter [value]="100" label="Clients"></app-counter>
@@ -129,7 +129,7 @@
 <app-herobar>
     <blockquote class="blockquote text-white text-center">
         <h4>"Such a quote ... much motivational"</h4>
-        
+
     </blockquote>
 </app-herobar>
 
@@ -145,19 +145,66 @@
                 <ng-container ngProjectAs="title">{{testimonial.title}}</ng-container>
 
                 <p>
-                   {{testimonial.content}}
+                    {{testimonial.content}}
                 </p>
 
                 <app-avatar ngProjectAs="avatar" [image]="testimonial.image"></app-avatar>
 
-                <app-rating *ngIf="testimonial.rating"
-                 ngProjectAs="rating" [rating]="testimonial.rating"></app-rating>
+                <app-rating *ngIf="testimonial.rating" ngProjectAs="rating" [rating]="testimonial.rating"></app-rating>
 
             </app-testimonial>
         </div>
     </div>
 </div>
 
+<!-- Contact Me -->
+
+<div class="container" id="Contact">
+    <h2 class="mt-4 text-center">Have project in mind? Contact me!</h2>
+    <hr>
+    <div class="row py-4">
+        <div class="col-md-6 col-12 p-2">
+            <div>
+
+                <pre>{{contactForm | json}}</pre>
+                
+                <div class="form-group">
+                    <label for="">Name:
+                        <input type="text" class="form-control" 
+                        [(ngModel)]="contactForm.name">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="">Email:
+                        <input type="email" class="form-control" [(ngModel)]="contactForm.email">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="">
+                        <input type="checkbox"
+                        [(ngModel)]="contactForm.agreement">
+                         I agree to <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="">Choose your topic:></label>
+                    <select class="form-control" [(ngModel)]="contactForm.topic">
+                        <option value="new">Ask about your new project idea</option>
+                        <option value="existing">Work on existing project</option>
+                        <option value="tetimonial">Send us testimonial</option>
+                        <option value="other">Other topic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" [(ngModel)]="contactForm.message"
+                    placeholder="Your message goes here.."></textarea>
+                </div>
+                <button class="float-right btn btn-primary" (click)="sendMessage()">Send Message</button>
+            </div>
+        </div>
+        <div class="col-md-6 col-12 p-4"></div>
+    </div>
+</div>
 
 <!-- Footer -->
 

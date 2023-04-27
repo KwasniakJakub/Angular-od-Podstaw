@@ -12,12 +12,12 @@ export class SlideInDirective {
   // @HostBinding('style.color')
 
   //handler: number
-  handler: any
+  handler: any;
 
   @Input('appSlideIn')
   @HostBinding('class')
-  direction = 'left'
-  
+  direction = 'left';
+
   @HostBinding('class.slideIn')
   slideIn = true;
 
@@ -27,10 +27,7 @@ export class SlideInDirective {
   @Input()
   delay = 1000;
 
-  constructor(private elem: ElementRef<HTMLElement>) {
-  }
-  
-  
+  constructor(private elem: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {
     this.handler = setTimeout(() => {

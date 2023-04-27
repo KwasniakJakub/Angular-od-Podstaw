@@ -45,7 +45,19 @@ export class HomeComponent {
 
   value = '';
 
-  currentTab = '';
+  currentTab = ''; 
+
+  contactForm = {
+    name: 'Anonym',
+    email: '',
+    agreement: true,
+    topic: 'new',
+    message: ''
+  }
+
+  sendMessage(){
+    console.log(this.contactForm)
+  }
 
   constructor() {}
 

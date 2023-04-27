@@ -14,6 +14,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { RatingComponent } from './components/rating/rating.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { SlideInDirective } from './directives/slide-in.directive';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import { SlideInDirective } from './directives/slide-in.directive';
     AvatarComponent,
     RatingComponent,
     CounterComponent,
-    SlideInDirective
+    SlideInDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
