@@ -13,7 +13,7 @@
 
 <!-- What Am I -->
 
-<div class="container">
+<div id="about" class="container" appWhenVisible>
     <h2 class="mt-4 text-center">What Am I</h2>
     <div class="row py-4">
         <div class="col">
@@ -39,7 +39,7 @@
     </div>
 </div>
 <!-- What I do -->
-<div class="container">
+<div id="services" class="container" appWhenVisible>
     <h2 class="mt-4 text-center">What I Do</h2>
     <hr>
     <div class="row py-4">
@@ -90,9 +90,40 @@
     </div>
 </div>
 
-<!-- My recent projects -->
+<!-- My experience -->
 
 <div class="container">
+    <h2 class="mt-4 text-center">My Work In Numbers</h2>
+    <hr>
+    <div class="d-flex flex-column flex-md-row justify-content-around pb-5">
+        
+    </div>
+</div>
+
+<!-- My Work In Numbers -->
+
+<div class="container" >
+    <h2 class="mt-4 text-center">My Work In Numbers</h2>
+    <hr>
+    <div class="d-flex flex-column flex-md-row justify-content-around pb-5">
+        <app-counter [value]="100" label="Clients"></app-counter>
+        <app-counter [value]="1000" label="Coffes"></app-counter>
+        <app-counter [value]="11000" label="Lines of Code"></app-counter>
+    </div>
+</div>
+
+<!-- Famous Quote -->
+
+<app-herobar>
+    <blockquote class="blockquote text-white text-center">
+        <h4>"Such a quote ... much motivational"</h4>
+
+    </blockquote>
+</app-herobar>
+ 
+<!-- My recent projects -->
+
+<div id="projects" class="container">
     <h2 class="mt-4 text-center">My Recent projects</h2>
     <hr>
     <div class="row py-4">
@@ -114,27 +145,6 @@
         <a href="javascript:;" class="btn btn-link">&raquo; Show more projects &laquo;</a>
     </div> -->
 </div>
-
-<!-- My Work In Numbers -->
-
-<div class="container">
-    <h2 class="mt-4 text-center">My Work In Numbers</h2>
-    <hr>
-    <div class="d-flex flex-column flex-md-row justify-content-around pb-5">
-        <app-counter [value]="100" label="Clients"></app-counter>
-        <app-counter [value]="1000" label="Coffes"></app-counter>
-        <app-counter [value]="11000" label="Lines of Code"></app-counter>
-    </div>
-</div>
-
-<!-- Famous Quote -->
-
-<app-herobar>
-    <blockquote class="blockquote text-white text-center">
-        <h4>"Such a quote ... much motivational"</h4>
-
-    </blockquote>
-</app-herobar>
 
 <!-- Testimonials -->
 <div class="container">
@@ -162,7 +172,7 @@
 
 <!-- Contact Me -->
 
-<div class="container" id="Contact">
+<div id="contact" class="container">
     <h2 class="mt-4 text-center">Have project in mind? Contact me!</h2>
     <hr>
     <div class="row py-4">

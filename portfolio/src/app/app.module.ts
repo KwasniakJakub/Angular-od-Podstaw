@@ -15,6 +15,7 @@ import { RatingComponent } from './components/rating/rating.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { SlideInDirective } from './directives/slide-in.directive';
 import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     RatingComponent,
     CounterComponent,
     SlideInDirective,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
