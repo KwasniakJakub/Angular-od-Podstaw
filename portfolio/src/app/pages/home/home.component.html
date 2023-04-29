@@ -1,3 +1,6 @@
+<head>
+    <script src="node_modules/odometer/odometer.min.js"></script>
+</head>
 <app-navbar></app-navbar>
 
 <app-herobar class="main-header">
@@ -164,43 +167,48 @@
     <hr>
     <div class="row py-4">
         <div class="col-md-6 col-12 p-2">
-            <div>
-
-                <pre>{{contactForm | json}}</pre>
+            <form #contactFormRef="ngForm" (ngSubmit)="sendMessage(contactFormRef)">
                 
+                <pre>{{originalForm | json}}</pre>
+                <pre>{{contactForm | json}}</pre>
+
                 <div class="form-group">
                     <label for="">Name:
-                        <input type="text" class="form-control" 
-                        [(ngModel)]="contactForm.name">
+                        <input type="text" class="form-control" #nameRef="ngModel" [(ngModel)]="contactForm.name"
+                            name="name">
                     </label>
+                    <!-- {{nameRef.value}} -->
                 </div>
                 <div class="form-group">
                     <label for="">Email:
-                        <input type="email" class="form-control" [(ngModel)]="contactForm.email">
+                        <input type="email" class="form-control" [(ngModel)]="contactForm.email" name="email">
                     </label>
                 </div>
                 <div class="form-group">
                     <label for="">
-                        <input type="checkbox"
-                        [(ngModel)]="contactForm.agreement">
-                         I agree to <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        <input type="checkbox" [(ngModel)]="contactForm.agreement" name="agreement">
+                        I agree to <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
                     </label>
                 </div>
-                <div class="form-group">
-                    <label for="">Choose your topic:></label>
-                    <select class="form-control" [(ngModel)]="contactForm.topic">
-                        <option value="new">Ask about your new project idea</option>
-                        <option value="existing">Work on existing project</option>
-                        <option value="tetimonial">Send us testimonial</option>
-                        <option value="other">Other topic</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" [(ngModel)]="contactForm.message"
-                    placeholder="Your message goes here.."></textarea>
-                </div>
-                <button class="float-right btn btn-primary" (click)="sendMessage()">Send Message</button>
-            </div>
+                <ng-container ngModelGroup="contents">
+                    <div class="form-group">
+                        <label for="">Choose your topic:></label>
+                        <select class="form-control" [(ngModel)]="contactForm.contents.topic" name="topic">
+                            <option value="">-- Select A Topic --</option>
+                            <option value="new">Ask about your new project idea</option>
+                            <option value="existing">Work on existing project</option>
+                            <option value="tetimonial">Send us testimonial</option>
+                            <option value="other">Other topic</option>
+                        </select>
+                    </div>
+                    <div class="form-group" *ngIf="contactFormRef.value.contents.topic">
+                        <textarea class="form-control" [(ngModel)]="contactForm.contents.message" name="message"
+                            placeholder="Your message goes here.."></textarea>
+                    </div>
+                </ng-container>
+                <button class="btn btn-danger" (click)="resetForm()">Reset</button>
+                <button class="btn btn-primary" type="submit">Send Message</button>
+            </form>
         </div>
         <div class="col-md-6 col-12 p-4"></div>
     </div>

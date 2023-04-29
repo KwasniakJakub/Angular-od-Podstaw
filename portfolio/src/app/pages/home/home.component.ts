@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent{
   recentProjects = [
     {
       id: 123,
@@ -51,15 +52,40 @@ export class HomeComponent {
     name: 'Anonym',
     email: '',
     agreement: true,
-    topic: 'new',
+    contents:{
+      topic: '',
+      message: ''
+    }
+  }
+  originalForm = {
+    name: 'Anonym',
+    email: '',
+    agreement: false,
+    topic: '',
     message: ''
   }
+  
+  @ViewChild('contactFormRef',{
+    read:NgForm, static:true
+  })
 
-  sendMessage(){
-    console.log(this.contactForm)
+  contactFormRef: NgForm = {} as NgForm;
+
+  sendMessage(contactForm: NgForm){
+    console.log(contactForm.value)  
+  }
+  resetForm(){
+    this.contactFormRef.resetForm(
+    this.originalForm)
   }
 
-  constructor() {}
+  constructor() {
+  } 
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void{
+    // this.contactFormRef.value
+  }
+
+  ngOnInit(): void {
+  }
 }
