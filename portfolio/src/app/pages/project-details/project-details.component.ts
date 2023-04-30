@@ -1,50 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss'],
+  selector: 'app-project-details',
+  templateUrl: './project-details.component.html',
+  styleUrls: ['./project-details.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectDetailsComponent implements OnInit{
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  project: Project | undefined 
+
+  constructor(private route:ActivatedRoute){
+    
+  }
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      const tag = params.get('tag');
-      const category = this.categories.find(c => c.id === tag);
-      if (category !== undefined && category !== null) {
-        this.selectCategory(category);
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('project_id');
+      if (id !== null) {
+        this.project = this.recentProjects.find(p => p.id === parseInt(id));
       }
     });
   }
-
-  categories: Category[] = [
-    { id: 'Web', label: 'Web & Interactive' },
-    { id: 'Animation', label: 'Animation' },
-    { id: 'Culture', label: 'Culture & Education' },
-  ];
-
-  navigateToCat(cat: Category){
-    this.router.navigate(['/projects'],{
-      queryParams:{tag: cat.id}
-    })
-  }
-
-  selectCategory(cat: Category) {
-    this.category = cat;
-    if (this.category) {
-      this.filtered = this.recentProjects.filter((p) =>
-        p.tags.includes(cat.label)
-      );
-    }else {
-      this.filtered = this.recentProjects;
-    }
-  }
-
-  category: Category | null = null;
-  filtered: Project[] = [];
 
   recentProjects = [
     {
@@ -321,7 +298,10 @@ export class ProjectsComponent implements OnInit {
       },
     },
   ];
+
+
 }
+
 interface Project {
   likes: number;
   id: number;
@@ -343,8 +323,4 @@ interface Project {
     src: string;
     filename: string;
   };
-}
-interface Category {
-  id: string;
-  label: string;
 }
