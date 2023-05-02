@@ -6,26 +6,37 @@
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" class="btn btn-secondary" [class.active]="category?.id == cat.id"
                 *ngFor="let cat of categories" (click)="navigateToCat(cat)">{{cat.label}}</button>
-
         </div>
     </div>
-    <div class="row row-cols-md-4 py-4" appWhenVisible>
 
-        <ng-container *ngFor="let project of recentProjects; index as i">
+    <div>
+        <p class="alert alert-danger" *ngIf="message">{{message}}</p>
 
-            <div class="col mb-4" appSlideIn="up">
-                <div class="card">
-                    <img class="img-fluid" [src]="'assets/'+project.images.thumbnail">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{project.title}}</h5>
-                        <button class="btn btn-link" [routerLink]="['/project',project.id]">
-                            Read More
-                        </button>
+        <div class="d-flex justify-content-center" *ngIf="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div class="row row-cols-md-4 py-4" appWhenVisible>
+
+            <ng-container *ngFor="let project of recentProjects; index as i">
+    
+                <div class="col mb-4" appSlideIn="up">
+                    <div class="card">
+                        <img class="img-fluid" [src]="'assets/'+project.images.thumbnail">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{project.title}}</h5>
+                            <button class="btn btn-link" [routerLink]="['/project',project.id]">
+                                Read More
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </ng-container>
-
+    
+            </ng-container>
+    
+        </div>
     </div>
+
+
 </div>

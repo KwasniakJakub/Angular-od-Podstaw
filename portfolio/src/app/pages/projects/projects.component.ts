@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router, NavigationExtras } from '@angular/router';
+import {
+  ActivatedRoute,
+  Route,
+  Router,
+  NavigationExtras,
+} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-projects',
@@ -7,17 +13,42 @@ import { ActivatedRoute, Route, Router, NavigationExtras } from '@angular/router
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+  message = ' ';
+  category: Category | null = null;
+  filtered: Project[] = [];
+  loading = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  project: Project[] = []
+  recentProjects: any = [];
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       const tag = params.get('tag');
-      const category = this.categories.find(c => c.id === tag);
-      if (category !== undefined && category !== null) {
-        this.selectCategory(category);
-      }
+      this.selectCategory(tag as any);
     });
+
+    this.loading = true;
+    this.http
+      .get('http://localhost:4200/assets/projects/projects.json')
+      .subscribe({
+        next: (projects) => {
+          this.recentProjects = projects;
+          const tag = this.route.snapshot.queryParamMap.get('tag');
+          this.selectCategory(tag as any);
+        },
+        error: (error) => {
+          this.message + 'Unexpected error: ' + error.statusText;
+        },
+        complete: () => {
+          this.loading = false;
+        }
+      })
   }
 
   categories: Category[] = [
@@ -26,301 +57,22 @@ export class ProjectsComponent implements OnInit {
     { id: 'Culture', label: 'Culture & Education' },
   ];
 
-  navigateToCat(cat: Category){
-    this.router.navigate(['/projects'],{
-      queryParams:{tag: cat.id}
-    })
+  navigateToCat(cat: Category) {
+    this.router.navigate(['/projects'], {
+      queryParams: { tag: cat.id },
+    });
   }
 
   selectCategory(cat: Category) {
     this.category = cat;
-    if (this.category) {
-      this.filtered = this.recentProjects.filter((p) =>
-        p.tags.includes(cat.label)
-      );
-    }else {
-      this.filtered = this.recentProjects;
+    if (cat && cat.label) {
+      this.filtered = this.recentProjects.filter(
+        (p: any) => p.tags && p.tags.includes(cat.label)
+      ) as Project[];
+    } else {
+      this.filtered = this.recentProjects as Project[];
     }
   }
-
-  category: Category | null = null;
-  filtered: Project[] = [];
-
-  recentProjects = [
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-    {
-      likes: 27,
-      id: 41086,
-      slug: 'story-line',
-      title: 'Story line',
-      createdAt: 1596499200,
-      tags: [
-        'Culture & Education',
-        'Web & Interactive',
-        'Animation',
-        'Clean',
-        'Unsual Navigation',
-        'WebGL',
-        'Black',
-        'Red',
-        'White',
-        'Transitions',
-        'Experimental',
-        'Storytelling',
-        'Three.js',
-        'React.js',
-        'GLSL',
-        'Filters and Effects',
-      ],
-      type: 'submission',
-      url: '#',
-      skills: {
-        design: 75,
-        html: 82,
-        css: 95,
-        angular: 31,
-        nodejs: 87,
-      },
-      images: {
-        thumbnail: '#',
-        src: '#',
-        filename: '#',
-      },
-    },
-  ];
 }
 interface Project {
   likes: number;

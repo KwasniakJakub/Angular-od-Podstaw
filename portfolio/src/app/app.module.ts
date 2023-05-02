@@ -17,6 +17,7 @@ import { SlideInDirective } from './directives/slide-in.directive';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ProjectDetailsComponent } from './pages/project-details/project-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProjectDetailsComponent } from './pages/project-details/project-details
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

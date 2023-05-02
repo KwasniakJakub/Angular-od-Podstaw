@@ -1,0 +1,39 @@
+{
+    "likes": 27,
+    "id": 41086,
+    "slug": "story-line",
+    "title": "Story line",
+    "createdAt": 1596499200,
+    "tags": [
+      "Culture & Education",
+      "Web & Interactive",
+      "Animation",
+      "Clean",
+      "Unsual Navigation",
+      "WebGL",
+      "Black",
+      "Red",
+      "White",
+      "Transitions",
+      "Experimental",
+      "Storytelling",
+      "Three.js",
+      "React.js",
+      "GLSL",
+      "Filters and Effects"
+    ],
+    "type": "submission",
+    "url": "https://www.awwwards.com/sites/story-line",
+    "skills": {
+      "design": 75,
+      "html": 82,
+      "css": 95,
+      "angular": 31,
+      "nodejs": 87
+    },
+    "images": {
+      "thumbnail": "#",
+      "src": "#",
+      "filename": "#"
+    }
+  }
